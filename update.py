@@ -10,13 +10,12 @@ conn = psycopg2.connect(
 )
 conn.autocommit = True
 cursor = conn.cursor()
-data = open("gsm.csv").readlines()
-for line in data:
-  ip,resource = line.strip().split(',')
-  text = ''' UPDATE load_balancer set resources = 'vt={0}' where dst_uri = 'sip:10.10.{1}:5060';
-  '''.format(resource,ip)
-  print(text)
-  cursor.execute(text)
+
+data = "gsm.csv"
+sql = "COPY load_balancer FROM STDIN DELIMITER '|' CSV HEADER"
+
+cursor.execute("truncate load_balancer CASCADE;")
+cursor.copy_expert(sql, open(data, "r"))
 
 conn.commit()
 conn.close()
