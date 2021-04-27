@@ -10,12 +10,15 @@ conn = psycopg2.connect(
 )
 conn.autocommit = True
 cursor = conn.cursor()
-
-data = open("gsm.csv","r")
-sql = "COPY load_balancer FROM STDIN DELIMITER '|' CSV HEADER"
-
 cursor.execute("truncate load_balancer CASCADE;")
-cursor.copy_from(data, "load_balancer",columns=("group_id","dst_uri","resources","probe_mode","description"), sep=",")
+
+file = open("gsm.csv").readlines()
+for line in file:
+  data = line.strip().split(',')
+  sql = (int(data[0]),data[1],data[2],int(data[3]),data[4])
+  cursor.execute('''
+		INSERT INTO load_balancer(group_id,dst_uri,resources,probe_mode,description) \
+		VALUES {}'''.format(sql))
 
 conn.commit()
 conn.close()
