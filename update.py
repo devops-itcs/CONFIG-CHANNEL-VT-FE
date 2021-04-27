@@ -15,7 +15,7 @@ data = open("gsm.csv","r")
 sql = "COPY load_balancer FROM STDIN DELIMITER '|' CSV HEADER"
 
 cursor.execute("truncate load_balancer CASCADE;")
-cursor.copy_from(data, "load_balancer", sep=",")
+cursor.copy_from(data, "load_balancer",columns=("group_id","dst_uri","resources","probe_mode","description"), sep=",")
 
 conn.commit()
 conn.close()
