@@ -1,4 +1,3 @@
-group_id,dst_uri,resources,probe_mode,description
 340,sip:10.10.97.15:5060,vt=14,2,GSM_340
 340,sip:10.10.97.17:5060,vt=31,2,GSM_340
 340,sip:10.10.97.18:5060,vt=32,2,GSM_340
