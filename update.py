@@ -24,6 +24,6 @@ conn.commit()
 conn.close()
 
 ssh = paramiko.SSHClient()
-ssh.set_missing_host_key_policy(AutoAddPolicy())
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect(server, username="root", password="Pls@1234")
 ssh.exec_command("opensipsctl fifo lb_reload")
