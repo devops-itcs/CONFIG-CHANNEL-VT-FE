@@ -10,7 +10,7 @@ conn = psycopg2.connect(
 )
 conn.autocommit = True
 cursor = conn.cursor()
-cursor.execute("truncate load_balancer CASCADE;")
+cursor.execute("truncate load_balancer RESTART IDENTITY CASCADE;")
 
 file = open("gsm.csv").readlines()
 for line in file:
