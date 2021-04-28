@@ -6,7 +6,7 @@ import psycopg2
 server = "10.10.94.129"
 
 conn = psycopg2.connect(
-   database="opensips", user='opensips', password='opensipsrw', host=server, port= '5432'
+   database="opensips", user='postgres', password='postgres', host=server, port= '5432'
 )
 conn.autocommit = True
 cursor = conn.cursor()
