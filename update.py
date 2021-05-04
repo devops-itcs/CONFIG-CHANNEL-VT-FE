@@ -16,7 +16,7 @@ file = open("gsm.csv").readlines()
 for line in file:
 	if line != "":
 		data = line.strip().split(',')
-		sql = (int(data[0]),data[1],data[2],int(data[3]),data[4])
+		sql = (int(data[0]),data[1].replace('"',''),data[2].replace('"',''),int(data[3]),data[4].replace('"',''))
 		cursor.execute('''
 			INSERT INTO load_balancer(group_id,dst_uri,resources,probe_mode,description) \
 			VALUES {}'''.format(sql))
