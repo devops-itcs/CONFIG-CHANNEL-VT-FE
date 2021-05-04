@@ -3,7 +3,7 @@
 import paramiko
 import psycopg2
 
-server = "10.10.94.129"
+server = "10.10.99.222"
 
 conn = psycopg2.connect(
    database="opensips", user='postgres', password='postgres', host=server, port= '5432'
